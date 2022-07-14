@@ -1,7 +1,7 @@
 #  Copyright 2022 The Neursafe FL Authors. All Rights Reserved.
 #  SPDX-License-Identifier: Apache-2.0
 
-# pylint:disable=missing-function-docstring, no-member
+# pylint:disable=missing-function-docstring, no-member, not-callable
 """UnitTest of Pytroch weights calculator.
 """
 import unittest
@@ -58,7 +58,7 @@ class TestTfWeights(unittest.TestCase):
         data1["name1"] = torch.full((2, 2, 3), 1.1)
         data1["name2"] = torch.full((2, 1, 2), 2.2)
 
-        result = self.__pytorch_cw.true_divide(data1, 2)
+        result = self.__pytorch_cw.true_divide(data1, torch.tensor(2))
         self.__assert_tensor_equal(result["name1"], torch.full((2, 2, 3), 0.55))
         self.__assert_tensor_equal(result["name2"], torch.full((2, 1, 2), 1.1))
 
