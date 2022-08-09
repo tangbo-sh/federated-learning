@@ -34,6 +34,7 @@ class TaskManager:
         client_config: config from client started.
     """
     def __init__(self, client_config):
+        self.__client_id = client_config["client_id"]
         self.__client_config = client_config
 
         # Record the running tasks, index by (job_name, round, type)
@@ -41,7 +42,8 @@ class TaskManager:
 
         self.__lmdb = LMDBUtil(client_config['lmdb_path'])
 
-        self.__resource_manager = ResourceManager()
+        self.__resource_manager = ResourceManager(
+            self.__client_config["platform"])
         self.__resource_manager.start()
 
     def create(self, task_type, task_info, files, grpc_metadata):
@@ -159,9 +161,11 @@ class TaskManager:
         """Generate task id
         """
         time_str = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
+        # k8s pod name's max length is 63. the origin client id maybe too long,
+        # so truncate the last 8 digits.
         return '%s-%s-%s-%s-%s' % (task_type,
                                    task_info.metadata.job_name,
-                                   self.__client_config["port"],
+                                   self.__client_id[-8:],
                                    task_info.metadata.round, time_str)
 
     def get_tasks(self):
