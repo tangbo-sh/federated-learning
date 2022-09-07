@@ -58,11 +58,13 @@ image_cfgs=(
   deploy/docker-images/dockerfiles/base.Dockerfile,,nsfl-base:latest
   deploy/docker-images/dockerfiles/cli.Dockerfile,,nsfl-cli:${opt_tag},,$opt_registry
   deploy/docker-images/dockerfiles/client-cpu.Dockerfile,,nsfl-client-cpu:${opt_tag},,$opt_registry
+  deploy/docker-images/dockerfiles/client-gpu.Dockerfile,,nsfl-client-gpu:${opt_tag},,$opt_registry
   deploy/docker-images/dockerfiles/coordinator.Dockerfile,,nsfl-coordinator:${opt_tag},,$opt_registry
   deploy/docker-images/dockerfiles/job_scheduler.Dockerfile,,nsfl-job-scheduler:${opt_tag},,$opt_registry
   deploy/docker-images/dockerfiles/selector.Dockerfile,,nsfl-selector:${opt_tag},,$opt_registry
   deploy/docker-images/dockerfiles/proxy.Dockerfile,,nsfl-proxy:${opt_tag},,$opt_registry
   deploy/docker-images/dockerfiles/model_manager.Dockerfile,,nsfl-model-manager:${opt_tag},,$opt_registry
+  deploy/docker-images/dockerfiles/data_server.Dockerfile,,nsfl-data-server:${opt_tag},,$opt_registry
   )
 
 
